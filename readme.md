@@ -1,4 +1,6 @@
-franco - 3
-manuel - 1,4
-guido  - 5
-mario - 2
+# División Ejercicios
+
+## Franco - 3 (✓)
+## Manuel - 1,4
+## Guido  - 5
+## Mario - 2 (✓)
