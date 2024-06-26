@@ -2,13 +2,13 @@
 En el programa trabajamos ahora con objetos de la clase Queue,
 a. Dada una fila A, Invertirla. Mostrar ambas filas. (usar fila auxiliar si lo necesita)
 b. Utilizando las operaciones de pila y de Fila, COPIE el contenido de una pila P, a una
-Fila C, de tal manera que el primer elemento de la Fila será el elemento “F” que se
-encuentra en el fondo de la pila, el segundo de la Fila el que está apilado sobre “F”,
-y así siguiendo. De esta forma el elemento del tope de la pila quedará en el último
+Fila C, de tal manera que el primer elemento de la Fila serï¿½ el elemento ï¿½Fï¿½ que se
+encuentra en el fondo de la pila, el segundo de la Fila el que estï¿½ apilado sobre ï¿½Fï¿½,
+y asï¿½ siguiendo. De esta forma el elemento del tope de la pila quedarï¿½ en el ï¿½ltimo
 lugar de la Fila. (Para resolver este ejercicio, use pila auxiliar)
-c. Ahora queremos buscar si el número entero X determinar está en la Fila A. La Fila A
-deberá quedar en su estado original al finalizar el algoritmo.
-d. Además de la Fila A cree la fila B, vacíe la fila A y cargue A y B con elementos
+c. Ahora queremos buscar si el nï¿½mero entero X determinar estï¿½ en la Fila A. La Fila A
+deberï¿½ quedar en su estado original al finalizar el algoritmo.
+d. Ademï¿½s de la Fila A cree la fila B, vacï¿½e la fila A y cargue A y B con elementos
 ordenados, realice un algoritmo que inserte los elementos de la fila A y B en otra
 fila C de manera tal que queden ordenados.
 e. Dada una fila C que contiene elementos repetidos consecutivos. Formar otra con
@@ -33,24 +33,24 @@ public:
         count = 0;
     }
 
-    // Verifica si la cola está vacía
+    // Verifica si la cola estï¿½ vacï¿½a
     bool ColaVacia() {
         return count == 0;
     }
 
-    // Verifica si la cola está llena
+    // Verifica si la cola estï¿½ llena
     bool ColaLlena() {
         return count == MAX;
     }
 
-    // Añade un elemento a la cola
+    // Aï¿½ade un elemento a la cola
     void Encolar(int elem) {
         if (!ColaLlena()) {
             rear = (rear + 1) % MAX;
             items[rear] = elem;
             count++;
         } else {
-            cout << "No se puede encolar. La cola está llena." << endl;
+            cout << "No se puede encolar. La cola estï¿½ llena." << endl;
         }
     }
 
@@ -60,7 +60,7 @@ public:
             front = (front + 1) % MAX;
             count--;
         } else {
-            cout << "No se puede desencolar. La cola está vacía." << endl;
+            cout << "No se puede desencolar. La cola estï¿½ vacï¿½a." << endl;
         }
     }
 
@@ -69,7 +69,7 @@ public:
         if (!ColaVacia()) {
             return items[front];
         } else {
-            cout << "La cola está vacía." << endl;
+            cout << "La cola estï¿½ vacï¿½a." << endl;
             return -1;
         }
     }
@@ -89,7 +89,7 @@ void mostrarCola(Queue &cola) {
     cout << endl;
 }
 
-// a. Invertir una fila
+
 void invertirFila(Queue &A) {
     stack<int> pilaAux;
     Queue aux = A; // Crear una copia para mostrar la fila original
@@ -111,24 +111,22 @@ void invertirFila(Queue &A) {
     mostrarCola(A);
 }
 
-// b. Copiar el contenido de una pila a una cola
+//copia el contenido de una pila
 void copiarPilaAFila(stack<int> &P, Queue &C) {
     stack<int> pilaAux;
 
-    // Transferir elementos de P a pilaAux
+    //PASA los elementos
     while (!P.empty()) {
         pilaAux.push(P.top());
         P.pop();
     }
 
-    // Transferir elementos de pilaAux a la cola C
     while (!pilaAux.empty()) {
         C.Encolar(pilaAux.top());
         pilaAux.pop();
     }
 }
 
-// c. Buscar un elemento en la fila
 bool buscarEnFila(Queue &A, int X) {
     bool encontrado = false;
     Queue aux;
@@ -146,7 +144,7 @@ bool buscarEnFila(Queue &A, int X) {
     return encontrado;
 }
 
-// d. Fusionar dos filas ordenadas en una tercera fila ordenada
+
 void fusionarFilasOrdenadas(Queue &A, Queue &B, Queue &C) {
     while (!A.ColaVacia() && !B.ColaVacia()) {
         if (A.VerPrimero() <= B.VerPrimero()) {
@@ -167,13 +165,16 @@ void fusionarFilasOrdenadas(Queue &A, Queue &B, Queue &C) {
     }
 }
 
-// e. Eliminar elementos repetidos consecutivos de una fila
+
 void eliminarRepetidosConsecutivos(Queue &C) {
     if (C.ColaVacia()) return;
 
     Queue aux;
+
+
     int prev = C.VerPrimero();
     aux.Encolar(prev);
+
     C.Desencolar();
 
     while (!C.ColaVacia()) {
@@ -216,7 +217,7 @@ int main() {
         cin >> op;
         switch (op) {
             case 1:
-                cout << "Ingrese el número para encolar: ";
+                cout << "Ingrese el numero para encolar: ";
                 cin >> num;
                 cout << "Seleccione Cola (1-A, 2-B, 3-C): ";
                 cin >> op;
@@ -227,28 +228,38 @@ int main() {
                 } else if (op == 3) {
                     C.Encolar(num);
                 } else {
-                    cout << "Opción no válida." << endl;
+                    cout << "Opcio no valida." << endl;
                 }
                 break;
             case 2:
                 invertirFila(A);
                 break;
             case 3:
-                cout << "Ingrese los números para apilar (0 para terminar): ";
+                cout << "Ingrese los nuemeros para apilar (0 para terminar): ";
                 while (true) {
                     cin >> num;
                     if (num == 0) break;
+
+
                     P.push(num);
                 }
+
+
                 copiarPilaAFila(P, C);
                 break;
             case 4:
-                cout << "Ingrese el número a buscar en la fila A: ";
+                cout << "Ingrese el nï¿½mero a buscar en la fila A: ";
+
                 cin >> num;
+                
+                
                 if (buscarEnFila(A, num)) {
-                    cout << "El número " << num << " está en la fila A." << endl;
+                
+                
+                    cout << "El nï¿½mero " << num << " estï¿½ en la fila A." << endl;
                 } else {
-                    cout << "El número " << num << " no está en la fila A." << endl;
+                
+                    cout << "El nï¿½mero " << num << " no estï¿½ en la fila A." << endl;
                 }
                 break;
             case 5:
@@ -259,13 +270,17 @@ int main() {
             case 6:
                 eliminarRepetidosConsecutivos(C);
                 cout << "Fila sin repetidos consecutivos: ";
+
+
                 mostrarCola(C);
                 break;
             case 0:
+                
                 cout << "Saliendo..." << endl;
+                
                 break;
             default:
-                cout << "Opción no válida." << endl;
+                cout << "Opciï¿½n no vï¿½lida." << endl;
         }
 
     } while (op != 0);
