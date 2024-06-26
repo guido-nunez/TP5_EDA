@@ -1,11 +1,11 @@
 
 /*
-. En el menú principal, se cuenta con las siguientes pilas: Tubo1, Tubo2, Tubo3.
+. En el menï¿½ principal, se cuenta con las siguientes pilas: Tubo1, Tubo2, Tubo3.
 a. cargaTubo, que permita introducir datos en el cada uno de los tubos
 b. pasarPelota, pasa todos los elementos de Tubo1 a Tubo2
-c. hayColor, que recibe un color “rojo” y determina si está en la Tubo1, todos los
+c. hayColor, que recibe un color ï¿½rojoï¿½ y determina si estï¿½ en la Tubo1, todos los
 elementos deben quedar nuevamente en Tubo1
-d. colorear, que tome pelotitas en Tubo1 y las coloca en Tubo2 solo rojas, y en Tubo3 las demás
+d. colorear, que tome pelotitas en Tubo1 y las coloca en Tubo2 solo rojas, y en Tubo3 las demï¿½s
 */
 
 #include <iostream>
@@ -17,48 +17,50 @@ const int MAX = 100;
 struct Pila {
 private:
     string Pelota[MAX];  // Arreglo para almacenar los elementos de la pila
-    int tope;            // Índice del último elemento de la pila
+    int tope;            // ï¿½ndice del ï¿½ltimo elemento de la pila
 
 public:
-    // Constructor
+   
     Pila() {
         tope = -1;
     }
 
-    // Verifica si la pila está vacía
+    
     bool PilaVacia() {
         return tope == -1;
     }
 
-    // Verifica si la pila está llena
+   
     bool PilaLlena() {
         return tope == MAX - 1;
     }
 
-    // Añade un elemento a la pila
+    
+
     void Apilar(string elem) {
         if (!PilaLlena()) {
             Pelota[++tope] = elem;
         } else {
-            cout << "No se puede apilar. La pila está llena." << endl;
+            cout << "No se puede apilar. La pila estï¿½ llena." << endl;
         }
     }
 
-    // Elimina el último elemento de la pila
+  
     void Desapilar() {
         if (!PilaVacia()) {
             tope--;
         } else {
-            cout << "No se puede desapilar. La pila está vacía." << endl;
+            cout << "No se puede desapilar. La pila estï¿½ vacï¿½a." << endl;
         }
     }
 
-    // Devuelve el último elemento de la pila
+   
+
     string VerTope() {
         if (!PilaVacia()) {
             return Pelota[tope];
         } else {
-            cout << "La pila está vacía." << endl;
+            cout << "La pila estï¿½ vacï¿½a." << endl;
             return "";
         }
     }
@@ -69,15 +71,17 @@ public:
     }
 };
 
-// Función para cargar un tubo con pelotas
+// Funciï¿½n para cargar un tubo con pelotas
 void cargaTubo(Pila &tubo) {
     string color;
     cout << "Ingrese el color de la pelota: ";
     cin >> color;
+
+
     tubo.Apilar(color);
 }
 
-// Función para pasar todas las pelotas de Tubo1 a Tubo2
+// Funciï¿½n para pasar todas las pelotas de Tubo1 a Tubo2
 void pasarPelota(Pila &Tubo1, Pila &Tubo2) {
     while (!Tubo1.PilaVacia()) {
         Tubo2.Apilar(Tubo1.VerTope());
@@ -85,11 +89,12 @@ void pasarPelota(Pila &Tubo1, Pila &Tubo2) {
     }
 }
 
-// Función para verificar si un color específico está en Tubo1
+// Funciï¿½n para verificar si un color especï¿½fico estï¿½ en Tubo1
 bool hayColor(Pila &Tubo1, string color) {
     bool encontrado = false;
     Pila auxiliar;
     while (!Tubo1.PilaVacia()) {
+        
         if (Tubo1.VerTope() == color) {
             encontrado = true;
         }
@@ -103,7 +108,7 @@ bool hayColor(Pila &Tubo1, string color) {
     return encontrado;
 }
 
-// Función para colorear las pelotas de Tubo1 a Tubo2 (rojas) y Tubo3 (otras)
+// Funciï¿½n para colorear las pelotas de Tubo1 a Tubo2 (rojas) y Tubo3 (otras)
 void colorear(Pila &Tubo1, Pila &Tubo2, Pila &Tubo3) {
     while (!Tubo1.PilaVacia()) {
         if (Tubo1.VerTope() == "rojo") {
@@ -139,8 +144,9 @@ int main() {
                     cargaTubo(Tubo2);
                 } else if (tubo == 3) {
                     cargaTubo(Tubo3);
+
                 } else {
-                    cout << "Tubo no válido." << endl;
+                    cout << "Tubo no vï¿½lido." << endl;
                 }
                 break;
             case 2:
@@ -150,9 +156,9 @@ int main() {
                 cout << "Ingrese el color a buscar: ";
                 cin >> color;
                 if (hayColor(Tubo1, color)) {
-                    cout << "El color " << color << " está en el Tubo1." << endl;
+                    cout << "El color " << color << " estï¿½ en el Tubo1." << endl;
                 } else {
-                    cout << "El color " << color << " no está en el Tubo1." << endl;
+                    cout << "El color " << color << " no estï¿½ en el Tubo1." << endl;
                 }
                 break;
             case 4:
@@ -162,11 +168,13 @@ int main() {
                 cout << "Saliendo..." << endl;
                 break;
             default:
-                cout << "Opción no válida." << endl;
+                cout << "Opciï¿½n no vï¿½lida." << endl;
         }
-        // system("PAUSE");
+
+
     } while (op != 0);
-    return 0;
+                //cout << terminamos << endl;
+       return 0;
 }
 
 
